@@ -304,7 +304,7 @@
       <h1 class="hero-title">Our Story</h1>
       <p class="hero-description">From the first glance to eternal love, we share the leading roles in this magical journey...</p>
       <div class="hero-buttons">
-        <button class="netflix-button play-button">▶️ Play</button>
+        <button class="netflix-button play-button" id="playButton">▶️ Play</button>
         <button class="netflix-button info-button">ℹ️ More Info</button>
       </div>
     </div>
@@ -314,7 +314,7 @@
   </section>
 
   <!-- Kategori 1: Your Beauty -->
-  <section class="preview-row">
+  <section class="preview-row" id="yourBeauty">
     <h2 class="row-title">Your Beauty</h2>
     <div class="preview-container">
       <div class="preview-item">
@@ -470,6 +470,14 @@
 
     englishBtn.addEventListener('click', () => changeLanguage('en'));
     indonesianBtn.addEventListener('click', () => changeLanguage('id'));
+
+    // Play Butonuna Tıklanınca Ekranı Aşağı Kaydır
+    const playButton = document.getElementById('playButton');
+    const yourBeautySection = document.getElementById('yourBeauty');
+
+    playButton.addEventListener('click', () => {
+      yourBeautySection.scrollIntoView({ behavior: 'smooth' });
+    });
   </script>
 </body>
 </html>
