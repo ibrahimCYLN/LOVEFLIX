@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LOVEFLIX</title>
   <style>
     /* General Styles */
@@ -17,24 +17,22 @@
 
     /* Header Styles */
     header {
-      text-align: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
       padding: 20px;
-      background: #000;
+      background: linear-gradient(to bottom, #000 50%, transparent 100%);
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     header h1 {
-      font-size: 3rem;
+      font-size: 2.5rem;
       margin: 0;
       color: #e50914; /* Netflix Red */
-    }
-
-    header p {
-      font-size: 1.2rem;
-      margin: 10px 0;
-    }
-
-    .language-toggle {
-      margin: 10px 0;
     }
 
     .language-toggle button {
@@ -51,44 +49,164 @@
       background: #b20710;
     }
 
-    /* Gallery Styles */
-    .gallery {
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      position: relative;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('hero-image.jpg');
+      background-size: cover;
+      background-position: center;
       display: flex;
       flex-direction: column;
+      justify-content: center;
       align-items: center;
-      padding: 20px;
+      text-align: center;
+      padding: 0 20px;
     }
 
-    .image-container {
+    .hero h2 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      margin: 10px 0;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+      font-size: 2rem;
+      color: #fff;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+      }
+      40% {
+        transform: translateX(-50%) translateY(10px);
+      }
+      60% {
+        transform: translateX(-50%) translateY(5px);
+      }
+    }
+
+    /* Gallery / Film Section - Vertical Scroll */
+    .gallery {
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      background: #141414;
+    }
+
+    .category {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .category h3 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .film {
       position: relative;
-      margin: 20px 0;
-      width: 80%;
-      max-width: 600px;
-      overflow: hidden;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-
-    .image-container img {
-      width: 100%;
-      display: block;
+      max-width: 400px;
+      margin: 0 auto;
+      cursor: pointer;
       transition: transform 0.3s ease;
     }
 
-    .image-container:hover img {
-      transform: scale(1.1);
+    .film:hover {
+      transform: scale(1.02);
     }
 
-    .caption {
+    .film img {
+      width: 100%;
+      display: block;
+      border-radius: 10px;
+      transition: filter 0.5s ease;
+    }
+
+    /* Overlay for the description */
+    .film .overlay {
       position: absolute;
-      bottom: 10px;
-      left: 10px;
-      font-size: 1.5rem;
-      font-weight: bold;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .film.active img {
+      filter: blur(3px) brightness(0.7);
+    }
+
+    .film.active .overlay {
+      opacity: 1;
+    }
+
+    /* Film title (like Netflix film names) */
+    .film-title {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 1.2rem;
+      color: #fff;
+      transition: opacity 0.5s ease;
+    }
+
+    .film.active .film-title {
+      opacity: 0;
+    }
+
+    /* Play Button */
+    .play-btn {
+      margin-top: 10px;
+      background-color: #e50914;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+      display: none;
+    }
+
+    .film.active .play-btn {
+      display: inline-block;
+    }
+
+    /* Celebration Section */
+    .celebration {
+      padding: 40px 20px;
+      text-align: center;
+      background: linear-gradient(45deg, #e50914, #141414);
+      color: #fff;
+    }
+
+    .celebration h2 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .celebration p {
+      font-size: 1.2rem;
     }
 
     /* Footer Styles */
@@ -96,27 +214,12 @@
       text-align: center;
       padding: 20px;
       background: #000;
-      margin-top: 40px;
     }
 
     footer p {
       margin: 0;
       font-size: 1rem;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 2rem;
-      }
-
-      header p {
-        font-size: 1rem;
-      }
-
-      .caption {
-        font-size: 1.2rem;
-      }
+      color: #fff;
     }
   </style>
 </head>
@@ -128,73 +231,149 @@
       <button id="englishBtn">English</button>
       <button id="indonesianBtn">Indonesian</button>
     </div>
-    <p id="slogan">My face is a hundred times brighter when I see your face. My soul is a hundred times happier when your soul is near.</p>
   </header>
 
-  <!-- Image Gallery Section -->
+  <!-- Hero Section -->
+  <section class="hero">
+    <div>
+      <h2>My Forever Valentine</h2>
+      <p id="line1">My face is a hundred times brighter when I see your face.</p>
+      <p id="line2">My soul is a hundred times happier when your soul is near.</p>
+    </div>
+    <div class="scroll-indicator">
+      <span>&#8595;</span>
+    </div>
+  </section>
+
+  <!-- Gallery / Film Section -->
   <section class="gallery">
-    <div class="image-container">
-      <img src="picture1.jpeg" alt="Our Best Day">
-      <p class="caption">The Best Day Ever</p>
+    <div class="category">
+      <h3>Your Beauty</h3>
+      <div class="film">
+        <img src="pictures1.jpeg" alt="Beauty Moment 1" />
+        <div class="overlay">
+          <p>Your smile makes the world shine brighter.</p>
+          <button class="play-btn">Play</button>
+        </div>
+        <div class="film-title">Beauty Moment 1</div>
+      </div>
+      <div class="film">
+        <img src="pictures2.jpeg" alt="Beauty Moment 2" />
+        <div class="overlay">
+          <p>Your eyes are like stars lighting up my universe.</p>
+          <button class="play-btn">Play</button>
+        </div>
+        <div class="film-title">Beauty Moment 2</div>
+      </div>
+      <div class="film">
+        <img src="pictures3.jpeg" alt="Beauty Moment 3" />
+        <div class="overlay">
+          <p>Your elegance takes my breath away.</p>
+          <button class="play-btn">Play</button>
+        </div>
+        <div class="film-title">Beauty Moment 3</div>
+      </div>
     </div>
-    <div class="image-container">
-      <img src="picture2.jpeg" alt="Forever Us">
-      <p class="caption">Forever Us</p>
+
+    <div class="category">
+      <h3>Your Cuteness</h3>
+      <div class="film">
+        <img src="pictures4.jpeg" alt="Cuteness Moment 1" />
+        <div class="overlay">
+          <p>Every little thing you do is adorable.</p>
+          <button class="play-btn">Play</button>
+        </div>
+        <div class="film-title">Cuteness Moment 1</div>
+      </div>
+      <div class="film">
+        <img src="pictures5.jpeg" alt="Cuteness Moment 2" />
+        <div class="overlay">
+          <p>Your laugh is my favorite melody.</p>
+          <button class="play-btn">Play</button>
+        </div>
+        <div class="film-title">Cuteness Moment 2</div>
+      </div>
+      <div class="film">
+        <img src="pictures6.jpeg" alt="Cuteness Moment 3" />
+        <div class="overlay">
+          <p>You're the cutest part of my life.</p>
+          <button class="play-btn">Play</button>
+        </div>
+        <div class="film-title">Cuteness Moment 3</div>
+      </div>
     </div>
-    <div class="image-container">
-      <img src="picture3.jpeg" alt="Love You More">
-      <p class="caption">Love You More</p>
+
+    <div class="category">
+      <h3>Your Emotions</h3>
+      <div class="film">
+        <img src="pictures7.jpeg" alt="Emotions Moment 1" />
+        <div class="overlay">
+          <p>Your emotions make our connection stronger.</p>
+          <button class="play-btn">Play</button>
+        </div>
+        <div class="film-title">Emotions Moment 1</div>
+      </div>
+      <div class="film">
+        <img src="pictures8.jpeg" alt="Emotions Moment 2" />
+        <div class="overlay">
+          <p>In your eyes, I find everything I need.</p>
+          <button class="play-btn">Play</button>
+        </div>
+        <div class="film-title">Emotions Moment 2</div>
+      </div>
+      <div class="film">
+        <img src="pictures9.jpeg" alt="Emotions Moment 3" />
+        <div class="overlay">
+          <p>Your love fills me with warmth every day.</p>
+          <button class="play-btn">Play</button>
+        </div>
+        <div class="film-title">Emotions Moment 3</div>
+      </div>
     </div>
-    <div class="image-container">
-      <img src="picture4.jpeg" alt="My Everything">
-      <p class="caption">My Everything</p>
-    </div>
-    <div class="image-container">
-      <img src="picture5.jpeg" alt="Always Yours">
-      <p class="caption">Always Yours</p>
-    </div>
-    <div class="image-container">
-      <img src="picture6.jpeg" alt="Endless Love">
-      <p class="caption">Endless Love</p>
-    </div>
+  </section>
+
+  <!-- Celebration Section -->
+  <section class="celebration">
+    <h2>Happy 1st Anniversary!</h2>
+    <p>
+      Today, we celebrate the end of our first year and the beginning of forever.
+      Cheers to more adventures, love, and unforgettable moments!
+    </p>
   </section>
 
   <!-- Footer Section -->
   <footer>
-    <p>Made with ❤️ for My Forever Valentine</p>
+    <p>MADE WITH ❤️</p>
   </footer>
 
   <script>
-    // Language Toggle Functionality
-    const slogan = document.getElementById('slogan');
-    const englishBtn = document.getElementById('englishBtn');
-    const indonesianBtn = document.getElementById('indonesianBtn');
+    // Language Toggle Functionality for Hero Text
+    const line1 = document.getElementById("line1");
+    const line2 = document.getElementById("line2");
+    const englishBtn = document.getElementById("englishBtn");
+    const indonesianBtn = document.getElementById("indonesianBtn");
 
-    const englishSlogan = "My face is a hundred times brighter when I see your face. My soul is a hundred times happier when your soul is near.";
-    const indonesianSlogan = "Wajahku seratus kali lebih cerah ketika melihat wajahmu. Jiwaku seratus kali lebih bahagia ketika jiwamu dekat.";
+    const englishLine1 = "My face is a hundred times brighter when I see your face.";
+    const englishLine2 = "My soul is a hundred times happier when your soul is near.";
+    const indonesianLine1 = "Wajahku seratus kali lebih cerah ketika melihat wajahmu.";
+    const indonesianLine2 = "Jiwaku seratus kali lebih bahagia ketika jiwamu dekat.";
 
-    englishBtn.addEventListener('click', () => {
-      slogan.textContent = englishSlogan;
+    englishBtn.addEventListener("click", () => {
+      line1.textContent = englishLine1;
+      line2.textContent = englishLine2;
     });
 
-    indonesianBtn.addEventListener('click', () => {
-      slogan.textContent = indonesianSlogan;
+    indonesianBtn.addEventListener("click", () => {
+      line1.textContent = indonesianLine1;
+      line2.textContent = indonesianLine2;
     });
 
-    // Fade-in Effect on Scroll
-    const imageContainers = document.querySelectorAll('.image-container');
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = 1;
-          entry.target.style.transform = 'translateY(0)';
-        }
+    // Toggle overlay, film title, and play button on film click
+    const films = document.querySelectorAll('.film');
+    films.forEach(film => {
+      film.addEventListener('click', () => {
+        film.classList.toggle('active');
       });
-    }, { threshold: 0.5 });
-
-    imageContainers.forEach((container) => {
-      observer.observe(container);
     });
   </script>
 </body>
