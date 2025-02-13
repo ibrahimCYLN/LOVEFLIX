@@ -97,7 +97,7 @@
       }
     }
 
-    /* Gallery / Film Section - Vertical Scroll */
+    /* Gallery / Film Section - Horizontal Scroll */
     .gallery {
       padding: 40px 20px;
       display: flex;
@@ -116,10 +116,18 @@
       margin-bottom: 20px;
     }
 
+    /* Film Slider */
+    .film-container {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding-bottom: 20px;
+      scroll-behavior: smooth;
+    }
+
     .film {
       position: relative;
-      max-width: 400px;
-      margin: 0 auto;
+      max-width: 300px;
       cursor: pointer;
       transition: transform 0.3s ease;
     }
@@ -249,85 +257,91 @@
   <section class="gallery">
     <div class="category">
       <h3>Your Beauty</h3>
-      <div class="film">
-        <img src="pictures1.jpeg" alt="Beauty Moment 1" />
-        <div class="overlay">
-          <p>Your smile makes the world shine brighter.</p>
-          <button class="play-btn">Play</button>
+      <div class="film-container">
+        <div class="film">
+          <img src="pictures1.jpeg" alt="Beauty Moment 1" />
+          <div class="overlay">
+            <p>Your smile makes the world shine brighter.</p>
+            <button class="play-btn">Play</button>
+          </div>
+          <div class="film-title">Beauty Moment 1</div>
         </div>
-        <div class="film-title">Beauty Moment 1</div>
-      </div>
-      <div class="film">
-        <img src="pictures2.jpeg" alt="Beauty Moment 2" />
-        <div class="overlay">
-          <p>Your eyes are like stars lighting up my universe.</p>
-          <button class="play-btn">Play</button>
+        <div class="film">
+          <img src="pictures2.jpeg" alt="Beauty Moment 2" />
+          <div class="overlay">
+            <p>Your eyes are like stars lighting up my universe.</p>
+            <button class="play-btn">Play</button>
+          </div>
+          <div class="film-title">Beauty Moment 2</div>
         </div>
-        <div class="film-title">Beauty Moment 2</div>
-      </div>
-      <div class="film">
-        <img src="pictures3.jpeg" alt="Beauty Moment 3" />
-        <div class="overlay">
-          <p>Your elegance takes my breath away.</p>
-          <button class="play-btn">Play</button>
+        <div class="film">
+          <img src="pictures3.jpeg" alt="Beauty Moment 3" />
+          <div class="overlay">
+            <p>Your elegance takes my breath away.</p>
+            <button class="play-btn">Play</button>
+          </div>
+          <div class="film-title">Beauty Moment 3</div>
         </div>
-        <div class="film-title">Beauty Moment 3</div>
       </div>
     </div>
 
     <div class="category">
       <h3>Your Cuteness</h3>
-      <div class="film">
-        <img src="pictures4.jpeg" alt="Cuteness Moment 1" />
-        <div class="overlay">
-          <p>Every little thing you do is adorable.</p>
-          <button class="play-btn">Play</button>
+      <div class="film-container">
+        <div class="film">
+          <img src="pictures4.jpeg" alt="Cuteness Moment 1" />
+          <div class="overlay">
+            <p>Every little thing you do is adorable.</p>
+            <button class="play-btn">Play</button>
+          </div>
+          <div class="film-title">Cuteness Moment 1</div>
         </div>
-        <div class="film-title">Cuteness Moment 1</div>
-      </div>
-      <div class="film">
-        <img src="pictures5.jpeg" alt="Cuteness Moment 2" />
-        <div class="overlay">
-          <p>Your laugh is my favorite melody.</p>
-          <button class="play-btn">Play</button>
+        <div class="film">
+          <img src="pictures5.jpeg" alt="Cuteness Moment 2" />
+          <div class="overlay">
+            <p>Your laugh is my favorite melody.</p>
+            <button class="play-btn">Play</button>
+          </div>
+          <div class="film-title">Cuteness Moment 2</div>
         </div>
-        <div class="film-title">Cuteness Moment 2</div>
-      </div>
-      <div class="film">
-        <img src="pictures6.jpeg" alt="Cuteness Moment 3" />
-        <div class="overlay">
-          <p>You're the cutest part of my life.</p>
-          <button class="play-btn">Play</button>
+        <div class="film">
+          <img src="pictures6.jpeg" alt="Cuteness Moment 3" />
+          <div class="overlay">
+            <p>You're the cutest part of my life.</p>
+            <button class="play-btn">Play</button>
+          </div>
+          <div class="film-title">Cuteness Moment 3</div>
         </div>
-        <div class="film-title">Cuteness Moment 3</div>
       </div>
     </div>
 
     <div class="category">
       <h3>Your Emotions</h3>
-      <div class="film">
-        <img src="pictures7.jpeg" alt="Emotions Moment 1" />
-        <div class="overlay">
-          <p>Your emotions make our connection stronger.</p>
-          <button class="play-btn">Play</button>
+      <div class="film-container">
+        <div class="film">
+          <img src="pictures7.jpeg" alt="Emotions Moment 1" />
+          <div class="overlay">
+            <p>Your emotions make our connection stronger.</p>
+            <button class="play-btn">Play</button>
+          </div>
+          <div class="film-title">Emotions Moment 1</div>
         </div>
-        <div class="film-title">Emotions Moment 1</div>
-      </div>
-      <div class="film">
-        <img src="pictures8.jpeg" alt="Emotions Moment 2" />
-        <div class="overlay">
-          <p>In your eyes, I find everything I need.</p>
-          <button class="play-btn">Play</button>
+        <div class="film">
+          <img src="pictures8.jpeg" alt="Emotions Moment 2" />
+          <div class="overlay">
+            <p>In your eyes, I find everything I need.</p>
+            <button class="play-btn">Play</button>
+          </div>
+          <div class="film-title">Emotions Moment 2</div>
         </div>
-        <div class="film-title">Emotions Moment 2</div>
-      </div>
-      <div class="film">
-        <img src="pictures9.jpeg" alt="Emotions Moment 3" />
-        <div class="overlay">
-          <p>Your love fills me with warmth every day.</p>
-          <button class="play-btn">Play</button>
+        <div class="film">
+          <img src="pictures9.jpeg" alt="Emotions Moment 3" />
+          <div class="overlay">
+            <p>Your love fills me with warmth every day.</p>
+            <button class="play-btn">Play</button>
+          </div>
+          <div class="film-title">Emotions Moment 3</div>
         </div>
-        <div class="film-title">Emotions Moment 3</div>
       </div>
     </div>
   </section>
