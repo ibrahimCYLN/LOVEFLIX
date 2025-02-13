@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LOVEFLIX</title>
   <style>
-    /* General Styles */
+    /* Netflix Temalı Stiller */
     body {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: 'Netflix Sans', 'Helvetica Neue', sans-serif;
       margin: 0;
       padding: 0;
       background: #141414;
@@ -56,30 +56,60 @@
       background: #b20710;
     }
 
-    /* Hero Section */
+    /* Hero Bölümü */
     .hero {
       height: 100vh;
       position: relative;
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url('hero-image.jpg');
-      background-size: cover;
-      background-position: center;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+        url('hero-image.jpg') center/cover no-repeat;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
-      text-align: center;
-      padding: 0 20px;
+      padding-left: 4%;
+      margin-top: -100px;
     }
 
-    .hero h2 {
-      font-size: 3rem;
-      margin-bottom: 20px;
+    .hero-content {
+      max-width: 800px;
     }
 
-    .hero p {
-      font-size: 1.5rem;
-      margin: 10px 0;
+    .hero-title {
+      font-size: 4rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.45);
+      margin-bottom: 1rem;
+    }
+
+    .hero-description {
+      font-size: 1.4rem;
+      line-height: 1.4;
+      max-width: 600px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .netflix-button {
+      padding: 10px 30px;
+      border-radius: 4px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: opacity 0.3s;
+    }
+
+    .play-button {
+      background: white;
+      color: black;
+    }
+
+    .info-button {
+      background: rgba(109, 109, 110, 0.7);
+      color: white;
     }
 
     .scroll-indicator {
@@ -104,115 +134,81 @@
       }
     }
 
-    /* Gallery / Film Section - Horizontal Scroll */
-    .gallery {
-      padding: 40px 20px;
+    /* Film Kategorileri */
+    .preview-row {
+      padding: 0 4%;
+      margin: 3rem 0;
+    }
+
+    .row-title {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .preview-container {
       display: flex;
-      flex-direction: column;
-      gap: 40px;
-      background: #141414;
-    }
-
-    .category {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .category h3 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-
-    /* Film Slider */
-    .film-container {
-      display: flex;
-      gap: 20px;
-      overflow-x: scroll;
-      scroll-behavior: smooth;
+      overflow-x: auto;
+      gap: 10px;
       padding-bottom: 20px;
-      position: relative;
     }
 
-    .film-container::-webkit-scrollbar {
+    .preview-container::-webkit-scrollbar {
       display: none;
     }
 
-    .film {
+    /* Film Kartları */
+    .preview-item {
       position: relative;
-      flex: 0 0 55%;
-      transition: transform 0.3s ease;
+      flex: 0 0 20%;
+      min-width: 250px;
+      border-radius: 4px;
+      overflow: hidden;
+      transition: transform 0.3s;
       cursor: pointer;
-      margin: 0 10px;
-      border-radius: 10px;
     }
 
-    .film img {
+    .preview-item:hover {
+      transform: scale(1.05) translateY(-10px);
+      z-index: 100;
+    }
+
+    .preview-item img {
       width: 100%;
+      height: auto;
       display: block;
-      border-radius: 10px;
-      transition: filter 0.5s ease;
-      object-fit: cover;
     }
 
-    .film:hover {
-      transform: scale(1.05);
-    }
-
-    /* Overlay for the description */
-    .film .overlay {
+    .preview-info {
       position: absolute;
-      top: 0;
-      left: 0;
+      bottom: 0;
       width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 10px;
+      padding: 20px;
+      background: linear-gradient(0deg, rgba(0,0,0,0.9) 60%, transparent);
       opacity: 0;
-      transition: opacity 0.5s ease;
-      text-align: center;
-      padding: 10px;
+      transition: opacity 0.3s;
     }
 
-    .film.active img {
-      filter: blur(3px) brightness(0.7);
-    }
-
-    .film.active .overlay {
+    .preview-item:hover .preview-info {
       opacity: 1;
     }
 
-    /* Film title (like Netflix film names) */
-    .film-title {
-      margin-top: 10px;
-      text-align: center;
+    .preview-title {
       font-size: 1.2rem;
-      color: #fff;
-      transition: opacity 0.5s ease;
+      margin-bottom: 0.5rem;
+      color: #e50914;
     }
 
-    .film.active .film-title {
-      opacity: 0;
+    .preview-description {
+      font-size: 0.9rem;
+      line-height: 1.3;
+      margin-bottom: 10px;
     }
 
-    /* MUACH button */
-    .play-btn {
-      margin-top: 10px;
-      background-color: #e50914;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      font-size: 1rem;
-      cursor: pointer;
-      border-radius: 5px;
-      display: none;
-    }
-
-    .film.active .play-btn {
-      display: inline-block;
+    /* Özel Efektler */
+    .netflix-match {
+      color: #46d369;
+      font-weight: bold;
+      font-size: 0.8rem;
     }
 
     /* Celebration Section */
@@ -232,19 +228,65 @@
       font-size: 1.2rem;
     }
 
-    /* Footer Styles */
-    footer {
+    /* Footer */
+    .footer {
+      padding: 50px 4%;
       text-align: center;
-      padding: 20px;
       background: #000;
     }
 
-    footer p {
-      margin: 0;
-      font-size: 1rem;
-      color: #fff;
+    /* Responsive Tasarım */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 3rem;
+      }
+
+      .hero-description {
+        font-size: 1.2rem;
+      }
+
+      .preview-item {
+        flex: 0 0 40%;
+      }
+
+      .row-title {
+        font-size: 1.5rem;
+      }
+
+      .celebration h2 {
+        font-size: 2rem;
+      }
+
+      .celebration p {
+        font-size: 1rem;
+      }
     }
 
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .hero-description {
+        font-size: 1rem;
+      }
+
+      .preview-item {
+        flex: 0 0 80%;
+      }
+
+      .row-title {
+        font-size: 1.2rem;
+      }
+
+      .celebration h2 {
+        font-size: 1.5rem;
+      }
+
+      .celebration p {
+        font-size: 0.9rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -257,154 +299,177 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
   <section class="hero">
-    <div>
-      <h2>My Forever Valentine</h2>
-      <p id="line1">My face is a hundred times brighter when I see your face.</p>
-      <p id="line2">My soul is a hundred times happier when your soul is near.</p>
+    <div class="hero-content">
+      <h1 class="hero-title">Our Story</h1>
+      <p class="hero-description">From the first glance to eternal love, we share the leading roles in this magical journey...</p>
+      <div class="hero-buttons">
+        <button class="netflix-button play-button">▶️ Play</button>
+        <button class="netflix-button info-button">ℹ️ More Info</button>
+      </div>
     </div>
     <div class="scroll-indicator">
       <span>&#8595;</span>
     </div>
   </section>
 
-  <!-- Gallery / Film Section -->
-  <section class="gallery">
-    <div class="category">
-      <h3>Your Beauty</h3>
-      <div class="film-container">
-        <div class="film">
-          <img src="pictures1.jpeg" alt="Beauty Moment 1" />
-          <div class="overlay">
-            <p>Your smile makes the world shine brighter.</p>
-            <button class="play-btn">MUACH</button>
-          </div>
-          <div class="film-title">Beauty Moment 1</div>
-        </div>
-        <div class="film">
-          <img src="pictures2.jpeg" alt="Beauty Moment 2" />
-          <div class="overlay">
-            <p>Your eyes are like stars lighting up my universe.</p>
-            <button class="play-btn">MUACH</button>
-          </div>
-          <div class="film-title">Beauty Moment 2</div>
-        </div>
-        <div class="film">
-          <img src="pictures3.jpeg" alt="Beauty Moment 3" />
-          <div class="overlay">
-            <p>Your elegance takes my breath away.</p>
-            <button class="play-btn">MUACH</button>
-          </div>
-          <div class="film-title">Beauty Moment 3</div>
+  <!-- Kategori 1: Your Beauty -->
+  <section class="preview-row">
+    <h2 class="row-title">Your Beauty</h2>
+    <div class="preview-container">
+      <div class="preview-item">
+        <img src="pictures1.jpeg" alt="Sunset Promises">
+        <div class="preview-info">
+          <div class="netflix-match">99.9% Match</div>
+          <h3 class="preview-title">Sunset Promises</h3>
+          <p class="preview-description">The love we found under the setting sun on our first date...</p>
         </div>
       </div>
-    </div>
-
-    <div class="category">
-      <h3>Your Cuteness</h3>
-      <div class="film-container">
-        <div class="film">
-          <img src="pictures4.jpeg" alt="Cuteness Moment 1" />
-          <div class="overlay">
-            <p>Every little thing you do is adorable.</p>
-            <button class="play-btn">MUACH</button>
-          </div>
-          <div class="film-title">Cuteness Moment 1</div>
-        </div>
-        <div class="film">
-          <img src="pictures5.jpeg" alt="Cuteness Moment 2" />
-          <div class="overlay">
-            <p>Your laugh is my favorite melody.</p>
-            <button class="play-btn">MUACH</button>
-          </div>
-          <div class="film-title">Cuteness Moment 2</div>
-        </div>
-        <div class="film">
-          <img src="pictures6.jpeg" alt="Cuteness Moment 3" />
-          <div class="overlay">
-            <p>You're the cutest part of my life.</p>
-            <button class="play-btn">MUACH</button>
-          </div>
-          <div class="film-title">Cuteness Moment 3</div>
+      <div class="preview-item">
+        <img src="pictures2.jpeg" alt="Lost in Your Eyes">
+        <div class="preview-info">
+          <div class="netflix-match">98.5% Match</div>
+          <h3 class="preview-title">Lost in Your Eyes</h3>
+          <p class="preview-description">The magic of our deep gazes...</p>
         </div>
       </div>
-    </div>
-
-    <div class="category">
-      <h3>Your Emotions</h3>
-      <div class="film-container">
-        <div class="film">
-          <img src="pictures7.jpeg" alt="Emotions Moment 1" />
-          <div class="overlay">
-            <p>Your emotions make our connection stronger.</p>
-            <button class="play-btn">MUACH</button>
-          </div>
-          <div class="film-title">Emotions Moment 1</div>
-        </div>
-        <div class="film">
-          <img src="pictures8.jpeg" alt="Emotions Moment 2" />
-          <div class="overlay">
-            <p>In your eyes, I find everything I need.</p>
-            <button class="play-btn">MUACH</button>
-          </div>
-          <div class="film-title">Emotions Moment 2</div>
-        </div>
-        <div class="film">
-          <img src="pictures9.jpeg" alt="Emotions Moment 3" />
-          <div class="overlay">
-            <p>Your love fills me with warmth every day.</p>
-            <button class="play-btn">MUACH</button>
-          </div>
-          <div class="film-title">Emotions Moment 3</div>
+      <div class="preview-item">
+        <img src="pictures3.jpeg" alt="Hand in Hand Journey">
+        <div class="preview-info">
+          <div class="netflix-match">97.3% Match</div>
+          <h3 class="preview-title">Hand in Hand Journey</h3>
+          <p class="preview-description">The love that grows with every step we take together...</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Celebration Section -->
+  <!-- Kategori 2: Your Cuteness -->
+  <section class="preview-row">
+    <h2 class="row-title">Your Cuteness</h2>
+    <div class="preview-container">
+      <div class="preview-item">
+        <img src="pictures4.jpeg" alt="Symphony of Laughter">
+        <div class="preview-info">
+          <div class="netflix-match">96.7% Match</div>
+          <h3 class="preview-title">Symphony of Laughter</h3>
+          <p class="preview-description">Those unforgettable moments we laughed together...</p>
+        </div>
+      </div>
+      <div class="preview-item">
+        <img src="pictures5.jpeg" alt="Moment of Surprise">
+        <div class="preview-info">
+          <div class="netflix-match">95.8% Match</div>
+          <h3 class="preview-title">Moment of Surprise</h3>
+          <p class="preview-description">That funny surprise we experienced together...</p>
+        </div>
+      </div>
+      <div class="preview-item">
+        <img src="pictures6.jpeg" alt="Festival of Smiles">
+        <div class="preview-info">
+          <div class="netflix-match">97.1% Match</div>
+          <h3 class="preview-title">Festival of Smiles</h3>
+          <p class="preview-description">The happiness that never leaves our faces...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kategori 3: Your Emotions -->
+  <section class="preview-row">
+    <h2 class="row-title">Your Emotions</h2>
+    <div class="preview-container">
+      <div class="preview-item">
+        <img src="pictures7.jpeg" alt="Silent Scream">
+        <div class="preview-info">
+          <div class="netflix-match">99.2% Match</div>
+          <h3 class="preview-title">Silent Scream</h3>
+          <p class="preview-description">The moment we spoke with our eyes...</p>
+        </div>
+      </div>
+      <div class="preview-item">
+        <img src="pictures8.jpeg" alt="Chemistry of Love">
+        <div class="preview-info">
+          <div class="netflix-match">98.9% Match</div>
+          <h3 class="preview-title">Chemistry of Love</h3>
+          <p class="preview-description">Those magical moments we created together...</p>
+        </div>
+      </div>
+      <div class="preview-item">
+        <img src="pictures9.jpeg" alt="Boundless">
+        <div class="preview-info">
+          <div class="netflix-match">99.5% Match</div>
+          <h3 class="preview-title">Boundless</h3>
+          <p class="preview-description">Everything is more meaningful with you...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Yıldönümü Bölümü -->
   <section class="celebration">
-    <h2>Happy 1st Anniversary!</h2>
-    <p>
-      Today, we celebrate the end of our first year and the beginning of forever.
-      Cheers to more adventures, love, and unforgettable moments!
-    </p>
+    <div class="anniversary-badge">
+      <h2>🎉 Happy 1st Anniversary!</h2>
+      <p>Today, we celebrate the end of our first year and the beginning of forever...
+      Cheers to more adventures, love, and unforgettable moments!</p>
+    </div>
   </section>
 
-  <!-- Footer Section -->
-  <footer>
-    <p>MADE WITH ❤️</p>
+  <footer class="footer">
+    <p>❤️ A love story with special effects - Producer: The Owner of Your Heart</p>
+    <p>MADE WITH LOVE</p>
   </footer>
 
   <script>
-    // Language Toggle Functionality for Hero Text
-    const line1 = document.getElementById("line1");
-    const line2 = document.getElementById("line2");
-    const englishBtn = document.getElementById("englishBtn");
-    const indonesianBtn = document.getElementById("indonesianBtn");
+    // Dil Değiştirme Fonksiyonları
+    const englishBtn = document.getElementById('englishBtn');
+    const indonesianBtn = document.getElementById('indonesianBtn');
 
-    const englishLine1 = "My face is a hundred times brighter when I see your face.";
-    const englishLine2 = "My soul is a hundred times happier when your soul is near.";
-    const indonesianLine1 = "Wajahku seratus kali lebih cerah ketika melihat wajahmu.";
-    const indonesianLine2 = "Jiwaku seratus kali lebih bahagia ketika jiwamu dekat.";
+    const texts = {
+      en: {
+        heroTitle: "Our Story",
+        heroDescription: "From the first glance to eternal love, we share the leading roles in this magical journey...",
+        playButton: "▶️ Play",
+        infoButton: "ℹ️ More Info",
+        beautyTitle: "Your Beauty",
+        cutenessTitle: "Your Cuteness",
+        emotionsTitle: "Your Emotions",
+        anniversaryTitle: "🎉 Happy 1st Anniversary!",
+        anniversaryText: "Today, we celebrate the end of our first year and the beginning of forever... Cheers to more adventures, love, and unforgettable moments!",
+        footerText: "❤️ A love story with special effects - Producer: The Owner of Your Heart",
+        madeWithLove: "MADE WITH LOVE"
+      },
+      id: {
+        heroTitle: "Cerita Kami",
+        heroDescription: "Dari pandangan pertama hingga cinta abadi, kami berbagi peran utama dalam perjalanan ajaib ini...",
+        playButton: "▶️ Mainkan",
+        infoButton: "ℹ️ Info Lebih Lanjut",
+        beautyTitle: "Kecantikanmu",
+        cutenessTitle: "Kelucuanmu",
+        emotionsTitle: "Emosimu",
+        anniversaryTitle: "🎉 Selamat Ulang Tahun Pertama!",
+        anniversaryText: "Hari ini, kami merayakan akhir tahun pertama kami dan awal selamanya... Bersulang untuk lebih banyak petualangan, cinta, dan momen tak terlupakan!",
+        footerText: "❤️ Kisah cinta dengan efek khusus - Produser: Pemilik Hatimu",
+        madeWithLove: "DIBUAT DENGAN CINTA"
+      }
+    };
 
-    englishBtn.addEventListener("click", () => {
-      line1.textContent = englishLine1;
-      line2.textContent = englishLine2;
-    });
+    function changeLanguage(lang) {
+      document.querySelector('.hero-title').textContent = texts[lang].heroTitle;
+      document.querySelector('.hero-description').textContent = texts[lang].heroDescription;
+      document.querySelector('.play-button').textContent = texts[lang].playButton;
+      document.querySelector('.info-button').textContent = texts[lang].infoButton;
+      document.querySelectorAll('.row-title')[0].textContent = texts[lang].beautyTitle;
+      document.querySelectorAll('.row-title')[1].textContent = texts[lang].cutenessTitle;
+      document.querySelectorAll('.row-title')[2].textContent = texts[lang].emotionsTitle;
+      document.querySelector('.celebration h2').textContent = texts[lang].anniversaryTitle;
+      document.querySelector('.celebration p').textContent = texts[lang].anniversaryText;
+      document.querySelector('.footer p').textContent = texts[lang].footerText;
+      document.querySelector('.footer p:last-child').textContent = texts[lang].madeWithLove;
+    }
 
-    indonesianBtn.addEventListener("click", () => {
-      line1.textContent = indonesianLine1;
-      line2.textContent = indonesianLine2;
-    });
-
-    // Toggle overlay, film title, and MUACH button on film click
-    const films = document.querySelectorAll('.film');
-    films.forEach(film => {
-      film.addEventListener('click', () => {
-        film.classList.toggle('active');
-      });
-    });
+    englishBtn.addEventListener('click', () => changeLanguage('en'));
+    indonesianBtn.addEventListener('click', () => changeLanguage('id'));
   </script>
 </body>
 </html>
