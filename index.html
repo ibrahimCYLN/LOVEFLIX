@@ -305,7 +305,7 @@
       <p class="hero-description">From the first glance to eternal love, we share the leading roles in this magical journey...</p>
       <div class="hero-buttons">
         <button class="netflix-button play-button" id="playButton">▶️ Play</button>
-        <button class="netflix-button info-button">ℹ️ More Info</button>
+        <button class="netflix-button info-button" id="infoButton">ℹ️ More Info</button>
       </div>
     </div>
     <div class="scroll-indicator">
@@ -341,6 +341,13 @@
           <p class="preview-description">The love that grows with every step we take together...</p>
         </div>
       </div>
+<div class="preview-item">
+        <img src="pictures9.jpeg" alt="Boundless">
+        <div class="preview-info">
+          <div class="netflix-match">99.5% Match</div>
+          <h3 class="preview-title">Boundless</h3>
+          <p class="preview-description">Everything is more meaningful with you...</p>
+        </div>
     </div>
   </section>
 
@@ -372,6 +379,13 @@
           <p class="preview-description">The happiness that never leaves our faces...</p>
         </div>
       </div>
+<div class="preview-item">
+        <img src="pictures9.jpeg" alt="Boundless">
+        <div class="preview-info">
+          <div class="netflix-match">99.5% Match</div>
+          <h3 class="preview-title">Boundless</h3>
+          <p class="preview-description">Everything is more meaningful with you...</p>
+        </div>
     </div>
   </section>
 
@@ -380,7 +394,7 @@
     <h2 class="row-title">Your Emotions</h2>
     <div class="preview-container">
       <div class="preview-item">
-        <img src="pictures7.jpeg" alt="Silent Scream">
+        <img src="pictures9.jpeg" alt="Silent Scream">
         <div class="preview-info">
           <div class="netflix-match">99.2% Match</div>
           <h3 class="preview-title">Silent Scream</h3>
@@ -388,7 +402,7 @@
         </div>
       </div>
       <div class="preview-item">
-        <img src="pictures8.jpeg" alt="Chemistry of Love">
+        <img src="pictures10.jpg" alt="Chemistry of Love">
         <div class="preview-info">
           <div class="netflix-match">98.9% Match</div>
           <h3 class="preview-title">Chemistry of Love</h3>
@@ -396,13 +410,68 @@
         </div>
       </div>
       <div class="preview-item">
-        <img src="pictures9.jpeg" alt="Boundless">
+        <img src="pictures11.jpg" alt="Boundless">
         <div class="preview-info">
           <div class="netflix-match">99.5% Match</div>
           <h3 class="preview-title">Boundless</h3>
           <p class="preview-description">Everything is more meaningful with you...</p>
         </div>
       </div>
+<div class="preview-item">
+        <img src="pictures12.jpg" alt="Boundless">
+        <div class="preview-info">
+          <div class="netflix-match">99.5% Match</div>
+          <h3 class="preview-title">Boundless</h3>
+          <p class="preview-description">Everything is more meaningful with you...</p>
+        </div>
+      </div>
+
+<div class="preview-item">
+        <img src="pictures13.jpg" alt="Boundless">
+        <div class="preview-info">
+          <div class="netflix-match">99.5% Match</div>
+          <h3 class="preview-title">Boundless</h3>
+          <p class="preview-description">Everything is more meaningful with you...</p>
+        </div>
+      </div>
+
+<div class="preview-item">
+        <img src="pictures14.jpg" alt="Boundless">
+        <div class="preview-info">
+          <div class="netflix-match">99.5% Match</div>
+          <h3 class="preview-title">Boundless</h3>
+          <p class="preview-description">Everything is more meaningful with you...</p>
+        </div>
+      </div>
+
+<div class="preview-item">
+        <img src="pictures15.jpg" alt="Boundless">
+        <div class="preview-info">
+          <div class="netflix-match">99.5% Match</div>
+          <h3 class="preview-title">Boundless</h3>
+          <p class="preview-description">Everything is more meaningful with you...</p>
+        </div>
+      </div>
+
+<div class="preview-item">
+        <img src="pictures16.jpg" alt="Boundless">
+        <div class="preview-info">
+          <div class="netflix-match">99.5% Match</div>
+          <h3 class="preview-title">Boundless</h3>
+          <p class="preview-description">Everything is more meaningful with you...</p>
+        </div>
+      </div>
+
+<div class="preview-item">
+        <img src="pictures17.jpg" alt="Boundless">
+        <div class="preview-info">
+          <div class="netflix-match">99.5% Match</div>
+          <h3 class="preview-title">Boundless</h3>
+          <p class="preview-description">Everything is more meaningful with you...</p>
+        </div>
+      </div>
+
+
     </div>
   </section>
 
@@ -473,7 +542,12 @@
 
     // Play Butonuna Tıklanınca Ekranı Aşağı Kaydır
     const playButton = document.getElementById('playButton');
+    const infoButton = document.getElementById('infoButton');
     const yourBeautySection = document.getElementById('yourBeauty');
+
+    infoButton.addEventListener('click', () => {
+      yourBeautySection.scrollIntoView({ behavior: 'smooth' });
+    });
 
     playButton.addEventListener('click', () => {
       yourBeautySection.scrollIntoView({ behavior: 'smooth' });
